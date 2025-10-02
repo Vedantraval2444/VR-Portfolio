@@ -1,0 +1,15 @@
+# Python Virtual Environment
+backend/venv/
+backend/__pycache__/
+*.pyc
+
+# Node.js Dependencies & Build Output
+frontend/node_modules/
+frontend/build/
+
+# Secret Environment Variables (VERY IMPORTANT)
+backend/.env
+
+# Editor and OS files
+.vscode/
+.DS_Store

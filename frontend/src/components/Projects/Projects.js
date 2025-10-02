@@ -12,7 +12,6 @@ const projectData = [
     tags: ['Python', 'React', 'TensorFlow', 'FastAPI', 'Machine Learning', 'Web Applications'],
     stats: { accuracy: '80-85%', performance: '5s', impact: 'Trusted' },
     github: 'https://github.com/Vedantraval2444/AuraSight-AI-App',
-    demo: 'https://aurasight-ai-app-2444.streamlit.app/',
   },
   {
     title: 'AetherChain',
@@ -109,5 +108,6 @@ const Projects = () => {
     </>
   );
 };
+
 
 export default Projects;

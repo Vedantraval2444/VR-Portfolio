@@ -1,0 +1,64 @@
+/* Import a professional font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Define color palettes for both themes */
+:root {
+  --font-main: 'Inter', sans-serif;
+}
+
+/* ------------------ DARK THEME (DEFAULT) ------------------ */
+body[data-theme='dark'] {
+  --bg-primary: #0B1120;
+  --bg-secondary: #131A2D;
+  --bg-tertiary: #1A2238;
+  --text-primary: #F0F4F8;
+  --text-secondary: #A0AEC0;
+  --accent-primary: #8A4FFF; /* Vibrant Purple */
+  --accent-secondary: #00E5FF; /* Bright Cyan */
+  --accent-tertiary: #FF007A; /* Neon Magenta */
+  --border-color: rgba(138, 79, 255, 0.2);
+}
+
+/* ------------------ LIGHT THEME ------------------ */
+body[data-theme='light'] {
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F7FAFC;
+  --bg-tertiary: #EDF2F7;
+  --text-primary: #1A202C;
+  --text-secondary: #4A5568;
+  --accent-primary: #6B46C1;
+  --accent-secondary: #00B5D8;
+  --accent-tertiary: #D53F8C;
+  --border-color: #E2E8F0;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-primary);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-secondary);
+}
+
+/* Custom Text Selection */
+::selection {
+  background-color: var(--accent-primary);
+  color: var(--bg-primary);
+}

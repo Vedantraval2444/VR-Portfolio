@@ -30,7 +30,7 @@ const Footer = () => {
           <p>ravalvedant2444@gmail.com</p>
           <div className="social-links">
             <a href="https://github.com/Vedantraval2444" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><FaGithub /></a>
-            <a href="www.linkedin.com/in/ravalvedant24" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><FaLinkedin /></a>
+            <a href="https://www.linkedin.com/in/ravalvedant24" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><FaLinkedin /></a>
             <a href="mailto:ravalvedant2444@gmail.com" aria-label="Email"><FaEnvelope /></a>
           </div>
         </div>
@@ -47,3 +47,4 @@ const Footer = () => {
 
 
 export default Footer;
+

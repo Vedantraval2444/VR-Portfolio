@@ -31,7 +31,7 @@ const Navbar = () => {
         <a href="https://github.com/Vedantraval2444" target="_blank" rel="noopener noreferrer" className="social-icon">
           <FaGithub />
         </a>
-        <a href="https://www.linkedin.com/in/ravalvedant24/" target="_blank" rel="noopener noreferrer" className="social-icon">
+        <a href="https://www.linkedin.com/in/ravalvedant24" target="_blank" rel="noopener noreferrer" className="social-icon">
           <FaLinkedin />
         </a>
         <button onClick={toggleTheme} className="theme-toggle-button">
@@ -47,3 +47,4 @@ const Navbar = () => {
 
 
 export default Navbar;
+

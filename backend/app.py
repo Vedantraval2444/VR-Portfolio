@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:3000", "https://your-live-portfolio-url.com"]) # Add your live URL when you deploy
+CORS(app, origins=["http://localhost:3000", "https://vedantraval24.netlify.app"]) # Add your live URL when you deploy
 
 @app.route('/api/contact', methods=['POST'])
 def handle_contact():
@@ -57,4 +57,5 @@ Message:
         return jsonify({"message": f"Failed to send message. Error: {e}"}), 500
 
 if __name__ == '__main__':
+
     app.run(debug=True)

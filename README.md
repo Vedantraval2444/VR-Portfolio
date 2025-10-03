@@ -5,7 +5,9 @@ Welcome to the official repository for my personal portfolio. This is a full-sta
 ### **[View the Live Portfolio Here](https://vedantraval24.netlify.app/)**
 
 ![VR Portfolio Screenshot](https://i.imgur.com/your-screenshot-url.png)
-*To add a screenshot, upload an image of your site to a service like [Imgur](https://imgur.com/) and paste the image link here, replacing the placeholder URL.*
+## 📸 Screenshot
+
+![My Portfolio](Image.png)
 
 ---
 

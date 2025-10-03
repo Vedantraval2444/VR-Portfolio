@@ -3,8 +3,6 @@
 Welcome to the official repository for my personal portfolio. This is a full-stack web application designed to showcase my skills, projects, and journey as a data science student. The entire site was built from the ground up with a focus on a professional user experience, advanced animations, and a clean, modern aesthetic.
 
 ### **[View the Live Portfolio Here](https://vedantraval24.netlify.app/)**
-
-![VR Portfolio Screenshot](https://i.imgur.com/your-screenshot-url.png)
 ## 📸 Screenshot
 
 ![My Portfolio](Image.png)

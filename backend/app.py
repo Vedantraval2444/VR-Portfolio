@@ -1,9 +1,9 @@
 import os
-import smtplib
-import ssl
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 
 load_dotenv()
 
@@ -17,7 +17,7 @@ CORS(app, resources={r"/api/*": {"origins": origins}})
 
 @app.route('/')
 def index():
-    return jsonify({"status": "Backend is running correctly."})
+    return jsonify({"status": "Backend is running and configured for SendGrid."})
 
 @app.route('/api/contact', methods=['POST'])
 def handle_contact():
@@ -25,53 +25,50 @@ def handle_contact():
     name = data.get('name')
     email = data.get('email')
     contact_no = data.get('contactNo', 'Not provided')
-    message = data.get('message')
+    message_text = data.get('message')
 
-    if not all([name, email, message]):
+    if not all([name, email, message_text]):
         return jsonify({"message": "Missing required fields"}), 400
 
-    sender_email = os.getenv("EMAIL_USER")
-    password = os.getenv("EMAIL_PASS")
+    # This is the email you verified as a "Single Sender" in SendGrid
+    sender_email = "ravalvedant2444@gmail.com" 
     receiver_email = "ravalvedant2444@gmail.com"
+    sendgrid_api_key = os.getenv("SENDGRID_API_KEY")
 
-    if not all([sender_email, password]):
-        print("CRITICAL SERVER ERROR: EMAIL_USER or EMAIL_PASS environment variables are not set on Render.")
+    if not sendgrid_api_key:
+        print("CRITICAL SERVER ERROR: SENDGRID_API_KEY environment variable is not set on Render.")
         return jsonify({"message": "Server configuration error."}), 500
 
-    email_message = f"""\
-Subject: New Contact Form Submission from Your Portfolio
+    # Create the email content using HTML for better formatting
+    email_content = f"""
+    <p>You have a new contact form submission from your portfolio:</p>
+    <p><strong>Name:</strong> {name}</p>
+    <p><strong>Email:</strong> {email}</p>
+    <p><strong>Contact No.:</strong> {contact_no}</p>
+    <hr>
+    <p><strong>Message:</strong></p>
+    <p>{message_text.replace(os.linesep, '<br>')}</p>
+    """
 
-Name: {name}
-Email: {email}
-Contact No.: {contact_no}
-
-Message:
-{message}
-"""
-    
-    # --- THIS IS THE FINAL FIX ---
-    # We are now connecting to port 587 which is less likely to be blocked.
-    smtp_server = "smtp.gmail.com"
-    port = 587
-    context = ssl.create_default_context()
+    message = Mail(
+        from_email=sender_email,
+        to_emails=receiver_email,
+        subject=f"New Portfolio Contact from {name}",
+        html_content=email_content)
     
     try:
-        print("Attempting to connect to Gmail SMTP server on port 587...")
-        server = smtplib.SMTP(smtp_server, port)
-        server.starttls(context=context)  # Secure the connection
-        print("Connection successful. Attempting to login...")
-        server.login(sender_email, password)
-        print("Login successful. Sending email...")
-        server.sendmail(sender_email, receiver_email, email_message)
-        print("Email sent successfully!")
-        return jsonify({"message": "Message sent successfully!"}), 200
+        sg = SendGridAPIClient(sendgrid_api_key)
+        response = sg.send(message)
+        print(f"SendGrid response status code: {response.status_code}")
+        # Status codes in the 2xx range mean success
+        if 200 <= response.status_code < 300:
+            return jsonify({"message": "Message sent successfully!"}), 200
+        else:
+            return jsonify({"message": "Failed to send email."}), response.status_code
+            
     except Exception as e:
-        print(f"CRITICAL SMTP ERROR: {e}")
+        print(f"CRITICAL SENDGRID ERROR: {e}")
         return jsonify({"message": "Failed to send email due to a server error."}), 500
-    finally:
-        # Ensure the server connection is closed
-        if 'server' in locals() and server:
-            server.quit()
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -44,19 +44,3 @@ This project is built with a modern, full-stack architecture, combining a powerf
 | **Flask** | A lightweight web framework for building the API endpoint. |
 | **SendGrid API**| A professional email service for reliably handling contact form submissions. |
 | **Gunicorn** | A production-grade WSGI server for running the Python application. |
-
----
-
-## 🚀 Getting Started Locally
-
-To run this project on your local machine, follow these steps.
-
-### Prerequisites
--   [Node.js](https://nodejs.org/) (which includes npm) installed.
--   [Python](https://www.python.org/) installed.
--   A code editor like [VS Code](https://code.visualstudio.com/).
-
-### 1. Clone the Repository
-```bash
-git clone [https://github.com/Vedantraval2444/vr-portfolio.git](https://github.com/Vedantraval2444/vr-portfolio.git)
-cd vr-portfolio
